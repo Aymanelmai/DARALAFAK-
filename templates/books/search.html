@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  {{ block.super }} - نتيجة البحث
+{% endblock %}
+
+{% block content %}
+
+<!-- Search -->
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="home-search">
+      <form action="{% url 'search' %}">
+        <!-- Form Row 1 -->
+        <div class="form-row" dir="rtl">
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">رقم ISBN</label>
+            <input type="text" name="isbn" class="form-control" placeholder="رقم ISBN" value="{{ values.isbn }}">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">العنوان</label>
+            <input type="text" name="title" class="form-control" placeholder="العنوان" value="{{ values.title }}">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">تفصيل</label>
+            <input type="text" name="description" class="form-control" placeholder="تفصيل" value="{{ values.description }}">
+          </div>
+        </div>
+
+        <div class="form-row" dir="rtl">
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">الكاتب</label>
+            <input type="text" name="authors__name" class="form-control" placeholder="الكاتب" value="{{ values.authors__name }}">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">الناشر</label>
+            <input type="text" name="publisher__name" class="form-control" placeholder="الناشر" value="{{ values.publisher__name }}">
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">نوع الكتاب</label>
+            <select name="physical_format__id" class="form-control">
+              <option selected="true" disabled="disabled">نوع الكتاب</option>
+              {% for physical_format in physical_formats %}
+                <option value="{{ physical_format.0 }}"
+                {% if values.physical_format__id == physical_format.0 %}
+                  selected
+                {% endif %}
+                >{{ physical_format.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">السلسلة</label>
+            <select name="serie__id" class="form-control">
+              <option selected="true" disabled="disabled">السلسلة</option>
+              {% for serie in series %}
+                <option value="{{ serie.0 }}"
+                {% if values.serie__id == serie.0 %}
+                  selected
+                {% endif %}
+                >{{ serie.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">التصيفات</label>
+            <select name="category__id" class="form-control" id="type">
+              <option selected="true" disabled="disabled">التصيفات</option>
+              {% for category in categories %}
+              <option value="{{ category.0 }}"
+              {% if values.category__id == category.0 %}
+                selected
+              {% endif %}
+              >{{ category.1 }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="sr-only">سنة الإصدار</label>
+            <select name="date_published" class="form-control" id="type">
+              <option selected="true" disabled="disabled">سنة الإصدار</option>
+              {% for date in dates %}
+              <option value="{{ date }}"
+              {% if values.date_published == date %}
+                selected
+              {% endif %}
+              >{{ date }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-12 mb-3">
+            <button id="submit-btn" class="btn btn-block mt-4" type="submit">بحث</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">الصفحة الرئيسية</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'books' %}">الإصدارات</a>
+        </li>
+        <li class="breadcrumb-item active">نتيجة البحث</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+<!-- Listings -->
+<section class="py-5 publications">
+  <div class="container">
+    <div class="row">
+      {% if books %}
+        {% for book in books %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card book-preview">
+              <img class="card-img-top mt-3" src="{{ book.front_image.url }}" alt="" width="150" height="191">
+              <div class="card-img-overlay">
+                <h2>
+                  <span class="badge badge-secondary text-white">{{ book.price }} د.م</span>
+                </h2>
+              </div>
+              <div class="card-body">
+                <div class="book-heading text-center">
+                  <h4 class="text-primary">{{ book.short_title }}</h4>
+                  <p>
+                    <i class="fas fa-marker text-secondary"></i>  {{ book.authors_names }}
+                  </p>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary text-right">
+                  <div class="col-6">
+                    <i class="fas fa-clock"></i> صدر في: {{ book.date_published }}</div>
+                  <div class="col-6">
+                    <i class="fas fa-file-alt"></i> الصفحات: {{ book.pages }}</div>
+                </div>
+                <hr>
+                <a href="{% url 'book' book.id %}" class="btn btn-block">معلومات عن الكتاب</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="col-md-12 force-right-dir">
+          <p>لا يوجد أي كتاب.</p>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metas %}
+<meta property="og:title" content="{{ book.title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:image" content="{{ book.front_image.url }}">
+{% endblock %}
+
+{% block title %}
+{{ block.super }} - {{ book.title }}
+{% endblock %}
+
+{% block seo_meta %}
+<meta name="description" content="{{ description }}">
+{% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-5">{{ book.title }}</h1>
+                <p class="lead">
+                    <i class="fas fa-marker"></i> {{ book.authors_names }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'index' %}">الصفحة الرئيسية</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'books' %}">الإصدارات</a>
+                </li>
+                <li class="breadcrumb-item active">{{ book.title }}</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section id="listing" class="pt-4">
+    <div class="container">
+        <a href="{% url 'books' %}" id="goback" class="btn btn-light mb-4 ml-auto">العودة للإصدارات</a>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img src="{{ book.front_image.url }}" alt="" class="mb-3">
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{{ book.back_image.url }}" alt="" class="mb-3">
+                    </div>
+                </div>
+                <div class="row mt-3 mb-5 fields">
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">الرقم الدولي:</span>
+                                <span class=""><b>{{ book.isbn }}</b></span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">السلسلة:</span>
+                                <span class=""><b>{{ book.serie_name }}</b></span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">الناشر:</span>
+                                <span class=""><b>{{ book.publisher.name }}</b></span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">التصينف:</span>
+                                <span class=""><b>{{ book.category.name }}</b></span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">نوع الكتاب:</span>
+                                <span class=""><b>{{ book.physical_format.name }}</b></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-group list-group-flush">
+                            {% if book.edition %}
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">الطبعة:</span>
+                                <span class=""><b>{{ book.edition }}</b></span>
+                            </li>
+                            {% endif %}
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">الثمن:</span>
+                                <span class=""><b>{{ book.price }} د.م</b></span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">الحجم:</span>
+                                <span class="" dir="ltr"><b>{{ book.x_dimension }} x {{ book.y_dimension }}</b></span>
+                            </li>
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">عدد الصفحات:</span>
+                                <span class="" dir="ltr"><b>{{ book.pages }}</b></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <div id="carousel2" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for author in book.authors.all %}
+                            <div class="carousel-item
+                {% if forloop.counter == 1 %}
+                  {{ 'active' }}
+                {% endif %}
+                ">
+                                {% if author.photo %}
+                                <img class="d-block w-100" src="{{ author.photo.url }}" alt="مؤلف الإصدار">
+                                {% else %}
+                                <img class="d-block w-100" src="{% static 'img/user.png' %}" alt="مؤلف الإصدار">
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel2" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel2" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="card-body text-center">
+                        {% if '/' in book.authors_names %}
+                        <h5 class="card-title">مؤلفي الإصدار</h5>
+                        {% else %}
+                        <h5 class="card-title">مؤلف الإصدار</h5>
+                        {% endif %}
+                        <h6 class="text-secondary">{{ book.authors_names }}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if book.description %}
+<section class="mb-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 force-right-dir">
+                <div class="card" style="width: 80%;">
+                    <div class="card-body">
+                        <h5 class="card-title">تفصيل</h5>
+                        <p class="card-text">{{ book.description | safe }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="publications my-5">
+    <div class="container">
+        {% if '/' in book.authors_names %}
+        <h3 class="text-center mb-3"> إصدارات -لنفس المؤلفين-</h3>
+        {% else %}
+        <h3 class="text-center mb-3">إصدارات -لنفس المؤلف-</h3>
+        {% endif %}
+        <div class="row">
+            {% if books_with_same_authors %}
+            {% for book in books_with_same_authors %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card book-preview">
+                    <img class="card-img-top mt-3" src="{{ book.front_image.url }}" alt="" width="150" height="191">
+                    <div class="card-img-overlay">
+                        <h2>
+                            <span class="badge badge-secondary text-white">{{ book.price }} د.م</span>
+                        </h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="book-heading text-center">
+                            <h4 class="text-primary">{{ book.short_title }}</h4>
+                            <p>
+                                <i class="fas fa-marker text-secondary"></i>  {{ book.authors_names }}
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary text-right">
+                            <div class="col-6">
+                                <i class="fas fa-clock"></i> صدر في: {{ book.date_published }}
+                            </div>
+                            <div class="col-6">
+                                <i class="fas fa-file-alt"></i> الصفحات: {{ book.pages }}
+                            </div>
+                        </div>
+                        <hr>
+                        <a href="{% url 'book' book.id %}" class="btn btn-block">معلومات عن الكتاب</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="col-md-12 force-right-dir">
+                <p>.لا يوجد أي كتاب</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

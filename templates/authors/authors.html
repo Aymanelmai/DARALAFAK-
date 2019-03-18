@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ block.super }} - لائحة المؤلفين
+{% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">المؤلفين</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">الصفحة الرئيسية</a>
+        </li>
+        <li class="breadcrumb-item active">
+          المؤلفون
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+<section class="py-5 publications">
+  <div class="container">
+    <div class="row">
+      {% if authors %}
+        {% for author in authors %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card book-preview">
+              {% if author.photo %}
+              <img class="card-img-top mt-3" src="{{ author.photo.url }}" alt="">
+              {% else %}
+              <img class="card-img-top mt-3" src="{% static 'img/user.png' %}" alt="">
+              {% endif %}
+              <div class="card-body">
+                <div class="author-heading text-center">
+                  <h4 class="text-primary"><i class="fas fa-marker text-secondary"></i> ذ. {{ author.name }}</h4>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary text-right">
+                  <div class="col-12">
+                    <i class="fas fa-book"></i> عدد الكتب: {{ author.books_count }}</div>
+                </div>
+                <hr>
+                <a href="{% url 'author' author.id %}" class="btn btn-block">إصدارات المؤلف</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+      <div class="col-md-12 force-right-dir">
+        <p>لا يوجد أي مؤلف.</p>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+  
+  <div class="row">
+      <div class="col-md-12">
+        {% if authors.has_other_pages %}
+        <ul class="pagination">
+          <li class="page-item {% if not authors.has_previous %}disabled{% endif %}">
+            <a class="page-link" href="?page=1">الصفحة الأولى</a>
+          </li>
+          <li class="page-item {% if not authors.has_previous %}disabled{% endif %}">
+            <a class="page-link" href="{% if authors.has_previous %} ?page={{ authors.previous_page_number }} {% else %} # {% endif %}">الصفحة السابقة</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link" href="?page={{ authors.number }}">{{ authors.number }} / {{ authors.paginator.num_pages }}</a>
+          </li>
+          <li class="page-item {% if not authors.has_next %}disabled{% endif %}">
+            <a class="page-link" href="{% if authors.has_next %} ?page={{ authors.next_page_number }} {% else %} # {% endif %}">الصفحة القادمة</a>
+          </li>
+          <li class="page-item {% if not authors.has_next %}disabled{% endif %}">
+            <a class="page-link" href="{% if authors.has_next %} ?page={{ authors.paginator.num_pages }} {% else %} # {% endif %}">الصفحة الأخيرة</a>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+    </div>
+</section>
+{% endblock %}

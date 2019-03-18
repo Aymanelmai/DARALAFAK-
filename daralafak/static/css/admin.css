@@ -1,0 +1,40 @@
+#header {
+  background-color: #D10000 !important;
+  height: 60px;
+}
+
+.breadcrumbs {
+  background-color: #FB4B4E !important;
+}
+
+.module caption {
+  background-color: #FB4B4E;
+}
+
+.module a {
+  color: rgba(124, 11, 43, 1) !important;
+}
+
+.object-tools a.addlink:hover {
+  background-color: #D10000 !important;
+}
+
+.submit-row input.default {
+  background-color: #3E000C !important;
+}
+
+.submit-row input.default:hover {
+  background-color: #7C0B2B !important;
+}
+
+input[type="submit"] {
+  background-color: #7C0B2B !important;
+}
+
+input[type="submit"]:hover {
+  background-color: #FB4B4E !important;
+}
+
+#content #changelist #toolbar form input[type="submit"] {
+  color: white !important;
+}

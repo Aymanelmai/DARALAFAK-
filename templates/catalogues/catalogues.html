@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ block.super }} - القوائم
+{% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">القوائم</h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">الصفحة الرئيسية</a>
+        </li>
+        <li class="breadcrumb-item active">
+          القوائم
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+<section class="py-5 publications">
+  <div class="container">
+    <div class="row">
+      {% if catalogues %}
+        <table class="table table-bordered table-hover text-right">
+          <thead>
+            <tr>
+              <th scope="col">إسم القائمة</th>
+              <th scope="col">تحميل</th>
+            </tr>
+          </thead>
+        <tbody>
+        {% for catalogue in catalogues %}
+              <tr>
+                <td>{{ catalogue.name }}</td>
+                <td>
+                  <a class="btn dl-btns" href="{{ catalogue.file.url }}" role="button"><i class="fa fa-download"></i> حمل الملف</button></a>
+                </td>
+              </tr>
+        {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <div class="col-md-12 force-right-dir">
+          <p>لا توجد أي قائمة.</p>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+
+</section>
+{% endblock %}

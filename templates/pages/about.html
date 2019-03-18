@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  {{ block.super }} - عن دار الآفاق
+{% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">عن دار الآفاق المغربية </h1>
+        <p class="lead">للنشر و التوزيع</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">الصفحة الرئيسية</a>
+        </li>
+        <li class="breadcrumb-item active">
+          عن الدار
+        </li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+<section id="about" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 force-right-dir">
+        <h2>نحن شركة دار الأفاق المغربية شركة متخصصة في النشر والتوزيع.</h2>
+        <p class="lead">يشرفنا أن نعرض على سيادتكم خدماتنا في مجال اقتناء الكتب والمجلات.</p>
+        <img src="{% static 'img/brand_on_books.jpg' %}" alt="Dar al Afak's books" class="responsive-img">
+        <p class="mt-4 lead">نحيطكم علما أن الشركة متخصصة في:
+          <ul>
+            <li>نشر وتوزيع الكتاب القانوني</li>
+            <li>توزيع المجلات العلمية الصادرة عن مختلف المؤسسات والهيآت بالمغرب في مجال العلوم القانونية</li>
+            <li>توزيع عدد من مؤلفات الصادرة عن أهم دور النشر العربية المتخصصة في المجال.</li>
+            <li>كما أنه لدينا عقود النشر والتوزيع الحصري لعدد من الكتب والمجلات.</li>
+          </ul>
+          لآجل ذلك نرسل لكم قائمة أولية بالكتب والمجلات التي نتولى توزيعها أملين أن تجدوا فبها مايفيذ السادة الأساتذة
+          والباحثين في أبحاثهم وكذا الطلبة في دراستهم.
+        </p>
+        من جهة أخرى فإن الشركة مستعدة للتعاون مع الأساتذة الراغبين في نشر أبحاثهم وتوزيعها داخل المملكة وخارجها.
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
