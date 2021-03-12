@@ -86,8 +86,8 @@ WSGI_APPLICATION = 'daralafak.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        # 'NAME': 'daralafak',
-        'NAME': 'prod3',
+        'NAME': 'daralafak',
+        # 'NAME': 'prod3',
         'USER': 'iliass',
         'PASSWORD': 'iliass',
         'HOST': 'localhost',

@@ -37,6 +37,7 @@ class Book(models.Model):
   description = RichTextField()
   front_image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name="صورة أمامية")
   back_image = models.ImageField(upload_to='photos/%Y/%m/%d/', verbose_name="صورة خلفية")
+  summary = models.FileField(upload_to='summaries/%Y/%m/%d', verbose_name="ملف الفهرس", blank=True)
   price = models.DecimalField(max_digits=6, decimal_places=2, verbose_name="الثمن")
   y_dimension = models.IntegerField(verbose_name="طول الكتاب", default=24)
   x_dimension = models.IntegerField(verbose_name="عرض الكتاب", default=17)

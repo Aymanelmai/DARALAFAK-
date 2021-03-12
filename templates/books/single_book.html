@@ -98,6 +98,14 @@
                                 <span class="float-right">عدد الصفحات:</span>
                                 <span class="" dir="ltr"><b>{{ book.pages }}</b></span>
                             </li>
+                        {% if book.summary %}
+                            <li class="list-group-item text-secondary">
+                                <span class="float-right">الفهرس:</span>
+                                <span class="">
+                                    <a class="text-secondary" href="{{ book.summary.url }}"><i class="fas fa-file-download"></i> تحميل الملف</a>
+                                </span>
+                            </li>
+                        {% endif %}
                         </ul>
                     </div>
                 </div>
