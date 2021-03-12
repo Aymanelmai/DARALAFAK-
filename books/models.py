@@ -27,7 +27,7 @@ class Book(models.Model):
   title = models.CharField(max_length=200, verbose_name="عنوان الكتاب", unique=True)
   short_title = models.CharField(max_length=58, verbose_name="عنوان قصير", blank=True)
   authors = models.ManyToManyField(Author, verbose_name="أسماء المؤلفين")
-  publisher = models.ForeignKey(Publisher, on_delete=models.DO_NOTHING, verbose_name="الناشر")
+  publisher = models.ForeignKey(Publisher, on_delete=models.DO_NOTHING, verbose_name="الناشر", blank=True, default=None)
   category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, verbose_name="تصنيف الكتاب")
   serie = models.ForeignKey(Serie, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="السلسلة", default=None)
   serie_number = models.IntegerField(verbose_name="رقم السلسلة", null=True, blank=True)
