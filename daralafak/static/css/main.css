@@ -1,159 +1,174 @@
 #logo {
-  height: 60px;
+    height: 88px;
 }
 
 #telephone {
-  text-align: right;
+    text-align: right;
 }
 
 #email {
-  text-align: center;
+    text-align: center;
 }
 
 .navbar, #main-footer {
-  /* height: 76px; */
-  background-color: #D10000 !important;
+    height: 62px;
+    background-color: #c7184e !important;
 }
 
+@media only screen and (max-width: 768px) {
+    /* for mobile phones */
+    .navbar, #main-footer {
+        height: auto;
+    }
+}
+
+
 #search-section {
-  min-height: 650px;
-  background: url(../img/search_bg.jpg) no-repeat top center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding-top: 6rem;
-  color: #fff;
+    min-height: 650px;
+    background: url(../img/search_bg.jpg) no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-top: 6rem;
+    color: #fff;
 }
 
 #search-div {
-  background-color: rgba(51, 51, 51, 0.7);
+    background-color: rgba(51, 51, 51, 0.7);
 }
 
 #submit-btn, .dl-btns {
-  background-color: #FB4B4E !important;
-  color: #fff
+    background-color: #FB4B4E !important;
+    color: #fff
 }
 
 #submit-btn:hover, .dl-btns:hover {
-  background-color: #D10000 !important;
-  color: #fff
+    background-color: #c7184e !important;
+    color: #fff
 }
 
 .badge {
-  background-color: #FB4B4E !important;
+    background-color: #FB4B4E !important;
 }
 
 .book {
-  text-align: center;
+    text-align: center;
 }
 
 .card-img-top {
-  width: 150px;
-  height: 191px;
-  display: inline-block;
-  margin: auto;
+    width: 150px;
+    height: 191px;
+    display: inline-block;
+    margin: auto;
 }
 
 .card-img-overlay {
-  height: 30px;
+    height: 30px;
 }
 
 .book-heading h4, .author-heading h4 {
-  color: #D10000 !important;
+    color: #c7184e !important;
 }
 
 .book-heading h4 {
-  height: 75px;
+    height: 75px;
 }
 
 .author-heading h4 {
-  height: 40px;
+    height: 40px;
 }
 
 .book-preview a {
-  color: #fff;
-  background-color: #D10000 !important;
+    color: #fff;
+    background-color: #c7184e !important;
 }
 
 .book-preview a:hover {
-  color: #fff;
-  background-color: #FB4B4E !important;
+    color: #fff;
+    background-color: #FB4B4E !important;
 }
 
 .text-secondary {
-  color: rgba(124, 11, 43, 1) !important;
+    color: rgba(124, 11, 43, 1) !important;
 }
 
 #showcase-inner {
-  background: url(../img/brand_on_books.jpg) no-repeat top center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  position: relative;
-  overflow: hidden;
-  min-height: 200px; }
-  #showcase-inner::before {
+    background: url(../img/brand_on_books.jpg) no-repeat top center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+}
+
+#showcase-inner::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     min-height: 100%;
     width: 100%;
-    background: rgba(124, 11, 43, 0.7); }
-  
+    background: rgba(124, 11, 43, 0.7);
+}
+
 .book-imgs img {
-  display: inline-block;
-  margin: auto;
+    display: inline-block;
+    margin: auto;
 }
 
 #goback {
-  width: fit-content;
-  display: block;
+    width: fit-content;
+    display: block;
 }
 
 .pagination {
-  width: fit-content;
-  margin: auto;
+    width: fit-content;
+    margin: auto;
 }
 
-.page-link  {
-  color: #D10000;
+.page-link {
+    color: #c7184e;
 }
 
 .page-item.active .page-link {
-  background-color: #D10000;
+    background-color: #c7184e;
 }
 
 .force-right-dir {
-  text-align: right;
+    text-align: right;
 }
 
 .breadcrumb {
-  background-color: #FFCBDD !important;
+    background-color: #FFCBDD !important;
 }
 
 .breadcrumb a {
-  color: #3E000C !important;
+    color: #3E000C !important;
 }
 
 .btn-light {
-  background-color: #FB4B4E !important;
-  color: white !important;
+    background-color: #FB4B4E !important;
+    color: white !important;
 }
 
 .btn-light:hover {
-  background-color: #FFCBDD !important;
-  color: #333 !important;
+    background-color: #FFCBDD !important;
+    color: #333 !important;
 }
 
 thead th {
-  background-color: #FB4B4E !important;
-  color: #fff !important;
+    background-color: #FB4B4E !important;
+    color: #fff !important;
 }
 
 .responsive-img {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
+}
+
+#barre_navigation {
+    z-index: 1020;
 }
