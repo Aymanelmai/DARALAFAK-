@@ -47,6 +47,14 @@
 <section id="listing" class="pt-4">
     <div class="container">
         <a href="{% url 'books' %}" id="goback" class="btn btn-light mb-4 ml-auto">العودة للإصدارات</a>
+        <a href="whatsapp://send?text={{ book.title }} https://{{ request.META.HTTP_HOST }}{% url 'book' book.id %}"
+           id="whatsapp_share"
+           data-action="share/whatsapp/share"
+           target="_blank"
+           class="btn btn-light mb-4 ml-auto">
+            <i class="fab fa-whatsapp"></i>
+            شارك عبر Whatsapp
+        </a>
         <div class="row">
             <div class="col-md-9">
                 <div class="row">

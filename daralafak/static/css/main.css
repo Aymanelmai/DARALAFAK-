@@ -119,9 +119,25 @@
     margin: auto;
 }
 
-#goback {
+#goback, #whatsapp_share {
     width: fit-content;
     display: block;
+}
+
+#whatsapp_share {
+    background-color: rgba(7, 95, 85, 1) !important;
+    color: white !important;
+}
+
+#whatsapp_share:hover {
+    background-color: rgba(7, 95, 85, 0.8) !important;
+    color: #dbdbdb !important;
+}
+
+@media screen and (min-width: 500px) {
+    #whatsapp_share {
+        display: none
+    }
 }
 
 .pagination {
