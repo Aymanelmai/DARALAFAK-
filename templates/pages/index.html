@@ -91,6 +91,28 @@
   </div>
 </section>
 
+<style>
+.hoverable {
+  position: relative;
+ overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.hoverable>.hoverable__tooltip {
+  display: none;
+}
+
+.hoverable:hover>.hoverable__tooltip {
+  display: inline;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  background: rgb(255, 254, 254);
+  border: 1px solid black;
+}
+</style>
+
 <section class="py-5 publications">
   <div class="container">
     <h3 class="text-center mb-3"> إصدارات جديدة</h3>
@@ -106,8 +128,12 @@
             </h2>
           </div>
           <div class="card-body">
-            <div class="book-heading text-center">
-              <h4 class="text-primary">{{ book.short_title }}</h4>
+            <div class="book-heading text-center ">
+
+              <div class="hoverable">
+                <span class="hoverable__main  "><h4>{{ book.title}}</h4></span>
+                <span class="hoverable__tooltip">{{ book.title}}</span>
+              </div>
               <p>
                 <i class="fas fa-marker text-secondary"></i> {{ book.authors_names }}
               </p>

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+{% load static %}
 <section id="showcase-inner" class="py-5 text-white">
   <div class="container">
     <div class="row text-center">
@@ -31,10 +32,10 @@
 </section>
 <section class="py-5 publications">
   <div class="container">
-    <div class="row">
+    <div class="row infinite-container">
       {% if books %}
         {% for book in books%}
-        <div class="col-md-6 col-lg-4 mb-4">
+        <div class="col-md-6 col-lg-4 mb-4 infinite-item">
           <div class="card book-preview">
             <img class="card-img-top mt-3" src="{{ book.front_image.url }}" alt="" width="150" height="191">
             <div class="card-img-overlay">
@@ -69,29 +70,37 @@
       {% endif %}
     </div>
   </div>
-  <div class="row">
+  <div class="row" >
     <div class="col-md-12">
-      {% if books.has_other_pages %}
-      <ul class="pagination">
-        <li class="page-item {% if not books.has_previous %}disabled{% endif %}">
-          <a class="page-link" href="?page=1">الصفحة الأولى</a>
-        </li>
-        <li class="page-item {% if not books.has_previous %}disabled{% endif %}">
-          <a class="page-link" href="{% if books.has_previous %} ?page={{ books.previous_page_number }} {% else %} # {% endif %}">الصفحة السابقة</a>
-        </li>
-        <li class="page-item active">
-          <a class="page-link" href="?page={{ books.number }}">{{ books.number }} / {{ books.paginator.num_pages }}</a>
-        </li>
-        <li class="page-item {% if not books.has_next %}disabled{% endif %}">
-          <a class="page-link" href="{% if books.has_next %} ?page={{ books.next_page_number }} {% else %} # {% endif %}">الصفحة القادمة</a>
-        </li>
-        <li class="page-item {% if not books.has_next %}disabled{% endif %}">
-          <a class="page-link" href="{% if books.has_next %} ?page={{ books.paginator.num_pages }} {% else %} # {% endif %}">الصفحة الأخيرة</a>
-        </li>
-      </ul>
+      {% if books.has_next %}        
+          <a class="infinite-more-link" style="margin: 0;"  href=" ?page={{ books.next_page_number }} "></a>           
       {% endif %}
     </div>
   </div>
   </div>
 </section>
+
+    <script src="{% static "js/jquery.waypoints.min.js" %}"></script>
+    <script src="/static/js/infinite.min.js"></script>
+
+    <script>
+      var infinite = new Waypoint.Infinite({
+          element: $('.infinite-container')[0],
+
+          offset: 'bottom-in-view',
+
+          onBeforePageLoad: function () {
+              $('.loading').show();
+          },
+          onAfterPageLoad: function () {
+              $('.loading').hide();
+          }
+
+      });
+  </script>
+
+
+
+
+
 {% endblock %}

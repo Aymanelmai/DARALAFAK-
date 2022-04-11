@@ -20,7 +20,15 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-md-12">
-                <h1 class="display-5">{{ book.title }}</h1>
+                <h1 class="display-4" id="title">    {{ book.title }} </h1>
+                <p  style="font-weight: 500" > <i id="short"class="fas fa-book"> {{ book.short_title }} </i> </p>
+                <script>
+                    let title = document.getElementById("title").innerText.trim()
+                    let short_title = document.getElementById("short").innerText.trim()
+                    if(title.length === short_title.length){
+                    document.getElementById("short").style.display="none"
+                    }
+                    </script>
                 <p class="lead">
                     <i class="fas fa-marker"></i> {{ book.authors_names }}</p>
             </div>

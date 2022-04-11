@@ -4,6 +4,7 @@
 
 <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138300996-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -35,14 +36,16 @@
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 
-<body dir="rtl">
-
+<body dir="rtl" style="overflow-x: hidden;">
+<div class='fixed-top'>
   {% include 'partials/_topbar.html' %}
 
   {% include 'partials/_navbar.html' %}
-  
-
-  {% block content %}
+  </div>
+<div style='margin-top: 7rem;'>
+   {% block content %}
+</div>
+ 
   {% endblock %}
 
   {% include 'partials/_footer.html' %}

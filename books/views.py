@@ -9,6 +9,7 @@ from .models import Book
 from series.models import Serie
 from categories.models import Category
 
+
 def index(request):
   books = Book.objects.order_by('-date_published', '-date_created').filter(is_published=True)
   paginator = Paginator(books, 6)
